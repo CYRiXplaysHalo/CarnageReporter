@@ -4,11 +4,11 @@
 
 ### What is Carnage Reporter?
 
-This is currently a simple python script that will save off your Halo 1 MCC PC carange report files into a non-temporary directory to preserve them since the game simply overwrites this file in its temporary directory after a new game is completed. Doing this allows you to have in-game session level stats for your stream as well as help report Halo 1 MCC PC stats to halo1hub.com where there will (eventually) be more in-depth stats than what you can get on Halo Waypoint.
+This is currently a simple python script that will save off your Halo 1 MCC PC carnage report files into a non-temporary directory to preserve them since the game simply overwrites this file in its temporary directory after a new game is completed. Doing this allows you to have in-game session level stats for your stream as well as help report Halo 1 MCC PC stats to halo1hub.com where there will (eventually) be more in-depth stats than what you can get on Halo Waypoint.
 
 ### I don't stream, why should I still use this?
 
-With this application we can create a database of in-depth stats for each game that will allow us to better understand Halo 1 MCC PC. So in addition to being able to track yourself throughout your time on MCC PC, we can better understand trends in the game itself like: what exactly is the map rotation for playlists? are the maps balanced? are the maps balanced any different than OG? Additionally, as long as one person per game submits stats, we will be able to record stats for all players in the game.
+With this application we can create a database of in-depth stats for each game that will allow us to better understand Halo 1 MCC PC. So in addition to being able to track yourself throughout your career on MCC PC, we can better understand trends in the game itself like: what exactly is the distribution of maps selected for each playlist? are the maps balanced? are the maps balanced any different than OG? Additionally, as long as one person per game submits stats, we will be able to record stats for all players in that game.
 
 ### How does it work?
 
