@@ -1,4 +1,4 @@
-# CarnageReporter
+# Carnage Reporter
 
 ![Image of Carnage Reporter stream overlay](https://raw.githubusercontent.com/CYRiXplaysHalo/CarnageReporter/master/image.png)
 
