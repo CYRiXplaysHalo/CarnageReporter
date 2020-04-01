@@ -16,7 +16,7 @@ Halo 1 MCC PC generates an XML file after each multiplayer game. These files giv
 
 ### How do I install it?
 
-While the code is open source, in order to submit stats to halo1hub.com you must use the compiled release version. 
+While the code is open source, in order to submit stats to halo1hub.com you must use the compiled release version. You can find the latest version here: https://github.com/CYRiXplaysHalo/CarnageReporter/releases/tag/v0.1-beta
 
 ### How do I configure it to work on my machine?
 
