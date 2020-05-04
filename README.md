@@ -4,7 +4,7 @@
 
 ### What is Carnage Reporter?
 
-This is currently a simple python script that will save off your Halo 1 MCC PC carnage report files into a non-temporary directory to preserve them since the game simply overwrites this file in its temporary directory after a new game is completed. Doing this allows you to have in-game session level stats for your stream as well as help report Halo 1 MCC PC stats to halo1hub.com where there will (eventually) be more in-depth stats than what you can get on Halo Waypoint.
+This is an app that will save off your MCC PC carnage report files into a non-temporary directory to preserve them since the game simply overwrites this file in its temporary directory after a new game is completed. Doing this allows you to have in-game session level stats for your stream as well as help report stats to a website in development that will provide more detailed breakdowns including medal counts.
 
 ### I don't stream, why should I still use this?
 
