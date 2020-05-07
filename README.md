@@ -1,6 +1,6 @@
 # Carnage Reporter
 
-![Image of Carnage Reporter stream overlay](https://raw.githubusercontent.com/CYRiXplaysHalo/CarnageReporter/master/image.png)
+![Image of Carnage Reporter stream overlay](https://raw.githubusercontent.com/CYRiXplaysHalo/CarnageReporter/b755295ff99c067f6ac80f18b0a4116294b6d5a1/image.png)
 
 ### What is Carnage Reporter?
 
