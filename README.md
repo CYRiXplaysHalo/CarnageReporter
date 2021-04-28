@@ -2,18 +2,18 @@
 
 ![Image of Carnage Reporter stream overlay](https://raw.githubusercontent.com/CYRiXplaysHalo/CarnageReporter/b755295ff99c067f6ac80f18b0a4116294b6d5a1/image.png)
 
-download and use just - Halo MCC Stat Tracker.exe
+##Download and use just - Halo MCC Stat Tracker.exe
 
 ### Changes from original
 
-All the information needed to run is collected from the user directly or from the app itself
-Creates all folders needed itself
-Checks with the user if they want to delete old game saves
-Checks correct gamertag is used
-Saves some medal data
-Does not save stats to halo1hub
-Stats show on the app itself
-Improved ux
+*All the information needed to run is collected from the user directly or from the app itself
+*Creates all folders needed itself
+*Checks with the user if they want to delete old game saves
+*Checks correct gamertag is used
+*Saves some medal data
+*Does not save stats to halo1hub
+*Stats show on the app itself
+*Improved ux
 
 ### stat tracker
 
