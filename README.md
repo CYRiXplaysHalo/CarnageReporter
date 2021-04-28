@@ -6,14 +6,14 @@
 
 ### Changes from original
 
-*All the information needed to run is collected from the user directly or from the app itself
-*Creates all folders needed itself
-*Checks with the user if they want to delete old game saves
-*Checks correct gamertag is used
-*Saves some medal data
-*Does not save stats to halo1hub
-*Stats show on the app itself
-*Improved ux
+* All the information needed to run is collected from the user directly or from the app itself
+* Creates all folders needed itself
+* Checks with the user if they want to delete old game saves
+* Checks correct gamertag is used
+* Saves some medal data
+* Does not save stats to halo1hub
+* Stats show on the app itself
+* Improved ux
 
 ### stat tracker
 
