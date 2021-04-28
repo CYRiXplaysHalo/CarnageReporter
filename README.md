@@ -1,23 +1,35 @@
-# Carnage Reporter
+# Carnage Reporter by CYRiX - Updated by ICoN 6iX
 
 ![Image of Carnage Reporter stream overlay](https://raw.githubusercontent.com/CYRiXplaysHalo/CarnageReporter/b755295ff99c067f6ac80f18b0a4116294b6d5a1/image.png)
 
-### What is Carnage Reporter?
+### Changes from original
 
-This is an app that will save off your MCC PC carnage report files into a non-temporary directory to preserve them since the game simply overwrites this file in its temporary directory after a new game is completed. Doing this allows you to have in-game session level stats for your stream as well as help report stats to a website in development that will provide more detailed breakdowns including medal counts.
+All the information needed to run is collected from the user directly or from the app itself
+Creates all folders needed itself
+Checks with the user if they want to delete old game saves
+Checks correct gamertag is used
+Saves some medal data
+Does not save stats to halo1hub
+Stats show on the app itself
+Improved ux
 
-### I don't stream, why should I still use this?
+### stat tracker
 
-With this application we can create a database of in-depth stats for each game that will allow us to better understand Halo 1 MCC PC. So in addition to being able to track yourself throughout your career on MCC PC, we can better understand trends in the game itself like: what exactly is the distribution of maps selected for each playlist? are the maps balanced? are the maps balanced any different than OG? Additionally, as long as one person per game submits stats, we will be able to record stats for all players in that game.
+Run the .exe or if you want to run it from source you need to have python install and then just double click or open and run module (you can download python from the windows store)
 
-### How does it work?
+When it runs it will ask prompt you for input, and the app will tell you what to press aka 'y' key or 'n' key, enter a gamertag or enter a number. After adding your response to any question press 'Enter' to confirm
+ 
+Now play a game and the tracker will show you the last game stats and overall stats
+if you play another the overal stats will update to be an total of the last two games and any following games
 
-Halo 1 MCC PC generates an XML file after each multiplayer game. These files give you every statistic and medal for each player and team. This script simply monitors the folder this file is created in, and copies it over to another folder where we can save it off, use it for streams and send it to halo1hub.com
+In the stats folder after a game is complete the indiviual stats text files will update if you have got, say some kills
 
-### How do I install it?
+### Using this with OBS/ Streamlabs 
 
-While the code is open source, in order to submit stats to halo1hub.com you must use the compiled release version. You can find the latest version here: https://github.com/CYRiXplaysHalo/CarnageReporter/releases/
+Add a new source as text file, find Stats Tracker folder and then stats folder
+In here you will see all the stats, eg total_kills.txt
 
-### How do I configure it to work on my machine?
+open this and move the text on obs where you want it, and maybe add other text source to say total kills or an custom image which can sit below this
 
-You must edit the config.ini file that comes with the release, and edit the "output_dir" and "gamer_tag" values to point to an output folder you want it to use and the gamertag you use to log on and play. Without the values being set properly, the application will not work.
+If you have a two PC setup to and want to use this you run this on the gaming PC and then on the stream PC either have it networked and look for these files
+Or use Google drive app which you can setup to look at the stats folder and this again is what OBS/ Streamlabs will look for, just these text files 
