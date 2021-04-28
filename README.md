@@ -15,7 +15,7 @@
 * Stats show on the app itself
 * Improved ux
 
-### stat tracker
+### Stat tracker
 
 Run the .exe or if you want to run it from source you need to have python install and then just double click or open and run module (you can download python from the windows store)
 
