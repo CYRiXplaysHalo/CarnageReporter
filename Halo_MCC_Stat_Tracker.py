@@ -1,10 +1,11 @@
 # MCC Carnage Reporter created by CYRiX github.com/CYRiXplaysHalo/CarnageReporter twitch.tv/cyrix - Forked (Updated) and commented by ICoN 6iX (Tested for Halo CE only)
 
-#Executable made via pip install pyinstaller and then call pyinstaller from the same destination of the script using pyinstaller --onefile pythonScriptName.py
+#exe made with py2exe as pyinstaller had issues, I belive due to temp file useage so complied it this way
 
 # The folder should contain:
-# * EXE of the script - what you press to run
-# * Script source - if you want to see how it is made and make tweaks to it (.py file)
+# * Folder with the exe in the other files just make the exe run
+# * EXE file it self - what you press to run
+# * Script source - if you want to see how it is made and make tweaks to it (Halo_MCC_Stat_Tracker.py file)
 # * Readme file
 # * Stats folder - created on first time running and checks for it on everyrun
 # * Saved games folder inside of Stats folder - created on first time running and checks for it on everyrun
@@ -27,7 +28,7 @@ from os.path import isfile, join
 def cls(): return system('cls')  # Used to clear the screen
 
 print("MCC Carnage Reporter created by CYRiX - Updated by ICoN 6iX")
-print("Version 0.7")
+print("Version 0.8")
 time.sleep(2)
 cls()
 
@@ -375,7 +376,7 @@ while(True):
                                     # Medals info requires going deeper into the file
                                     medals = []
 
-                                    for child in root.find('.//MedalsCount'):
+                                    for child in root[10][i].find('.//MedalsCount'):
                                         medals.append(child.attrib)
 
                                     # From the xml <Medal mId="115" mCount="8"/>  medal id 115 = headshots, medal count 8 means you got 8 headshots
@@ -384,7 +385,7 @@ while(True):
 
                                     # You can add more medals this way just need to work out by playing to find out which ones are which
                                     total_headshots += int(
-                                        medals[105].get('mCount'))
+                                        medals[111].get('mCount'))
 
                                     # Writes medal info to stat text files which OBS/ Streamlabs read and display
                                     f = open(
