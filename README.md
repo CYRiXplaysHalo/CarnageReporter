@@ -17,9 +17,9 @@
 
 ### Stat tracker
 
-Download the zip and extract it
-Next extract the "exe in here" folder 
-Run the .exe (Halo_MCC_Stat_Tracker.exe) or if you want to run it from source you need to have python install and then just double click or open and run module (you can download python from the windows store) (source fill is called Halo_MCC_Stat_Tracker.py)
+1. Download the zip and extract it
+1. Next extract the "exe in here" folder 
+1. Run the .exe (Halo_MCC_Stat_Tracker.exe) or if you want to run it from source you need to have python install and then just double click or open and run module (you can download python from the windows store) (source fill is called Halo_MCC_Stat_Tracker.py)
 
 When it runs it will ask prompt you for input, and the app will tell you what to press aka 'y' key or 'n' key, enter a gamertag or enter a number. After adding your response to any question press 'Enter' to confirm
  
