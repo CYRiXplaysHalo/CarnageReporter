@@ -14,6 +14,7 @@
 * Does not save stats to halo1hub
 * Stats show on the app itself
 * Improved ux
+* Export to CSV
 
 ### Stat tracker
 
