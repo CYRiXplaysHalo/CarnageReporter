@@ -1,4 +1,4 @@
-# MCC Carnage Reporter created by CYRiX github.com/CYRiXplaysHalo/CarnageReporter twitch.tv/cyrix - Forked (Updated) and commented by ICoN 6iX (Tested for Halo CE only)
+# MCC Carnage Reporter created by CYRiX github.com/CYRiXplaysHalo/CarnageReporter twitch.tv/cyrix - Updated and commented by ICoN 6iX (Tested for Halo CE only)
 
 #exe made with py2exe as pyinstaller had issues, I belive due to temp file useage so complied it this way
 
@@ -20,6 +20,7 @@ import shutil #Copy and paste files
 import sys
 import time #Pause between actions
 import xml.etree.ElementTree as ET #Get data from the XML files
+import pandas as pd #Used to create CSV file
 import os
 from os import system
 from os.path import isfile, join
@@ -28,7 +29,7 @@ from os.path import isfile, join
 def cls(): return system('cls')  # Used to clear the screen
 
 print("MCC Carnage Reporter created by CYRiX - Updated by ICoN 6iX")
-print("Version 0.8")
+print("Version 0.9")
 time.sleep(2)
 cls()
 
@@ -114,6 +115,17 @@ saved = output_path + "Saved Game Files\\"
 if not os.path.exists(saved):
     os.makedirs(saved)
     time.sleep(2)
+
+# Asks if you want to save CSV files. It will create a folder to store them
+if input("Do you want to capture CSV files of games, (Y/N)? ").lower().strip()[:1] == "y":
+    print("CSV files will now be saved - CSV folder")
+    csv = 1
+    csv_output =  dir_path + "\\" + "CSV\\"
+    if not os.path.exists(csv_output):
+        os.makedirs(csv_output)
+        time.sleep(2)
+else:
+    csv = 0
 
 # Globals
 total_game_count = 0
@@ -212,6 +224,9 @@ f = open(output_path + "total_grenade_sticks.txt", "w")
 f.write(str(0))
 f.close()
 f = open(output_path + "total_headshots.txt", "w")
+f.write(str(0))
+f.close()
+f = open(output_path + "total_grenade_kills.txt", "w")
 f.write(str(0))
 f.close()
 
@@ -379,15 +394,15 @@ while(True):
                                     for child in root[10][i].find('.//MedalsCount'):
                                         medals.append(child.attrib)
 
-                                    # From the xml <Medal mId="115" mCount="8"/>  medal id 115 = headshots, medal count 8 means you got 8 headshots
+                                    # From the xml <Medal mId="105" mCount="8"/>  medal id 105 = stickies0, medal count 8 means you got 8 stickies
                                     total_grenade_sticks += int(
-                                        medals[115].get('mCount'))
+                                        medals[105].get('mCount'))
 
                                     # You can add more medals this way just need to work out by playing to find out which ones are which
                                     total_headshots += int(
                                         medals[111].get('mCount'))
 
-                                    # Writes medal info to stat text files which OBS/ Streamlabs read and display
+                                    # Writes medal info to stat text files which OBS/ Streamlabs reads and display
                                     f = open(
                                         output_path + "total_grenade_sticks.txt", "w")
                                     f.write(str(total_grenade_sticks))
@@ -398,6 +413,21 @@ while(True):
                                     f.close()
 
                                     # Writes all none medals in the same fashion
+                                    # ID for some other medals
+                                    # 9 avenger
+                                    # 8 assits
+                                    # 129 kill
+                                    # 55 comeback kill
+                                    # 104 nade
+                                    # 62 doubel kills
+                                    # 111 headshots
+                                    # 118 hill offence
+                                    # 184 revenge
+                                    # 171 protector
+                                    # 119 i see you
+                                    # 180 reload this
+                                    # 138 killjoy
+
                                     f = open(output_path +
                                                 "total_melee_kills.txt", "w")
                                     f.write(str(total_melee_kills))
@@ -418,11 +448,11 @@ while(True):
                                                 "total_kdr.txt", "w")
                                     if total_deaths > 0:
                                         f.write(
-                                            str(round(total_kills/total_deaths, 2)))
+                                            str(round(total_kills/ total_deaths, 2)))
                                     elif total_deaths == 0 and total_kills == 0:
-                                        f.write("")
+                                        f.write("0")
                                     else:
-                                        f.write("∞")
+                                        f.write(str(total_kills))
                                     f.close()
                                     f = open(output_path +
                                                 "total_assists.txt", "w")
@@ -440,7 +470,6 @@ while(True):
                                                 "total_weapon_kills.txt", "w")
                                     f.write(str(total_weapon_kills))
                                     f.close()
-
                                     f = open(
                                         output_path + "total_grenade_kills.txt", "w")
                                     f.write(str(total_grenade_kills))
@@ -492,6 +521,7 @@ while(True):
                                 op_team = " Blue Team: "
 
                             print("\nLast Game Played - " +
+                                    root[7].get('HopperName').replace("$MP_", "") + ' - ' +
                                     root[8].get('GameTypeName'))
 
                             if int(team_score) > int(opponent_score):
@@ -521,7 +551,7 @@ while(True):
                                     print("Assists: " +
                                             str(root[10][x].get('mAssists')))
                                     print("Stickies: " +
-                                            str(medals[115].get('mCount')))
+                                            str(medals[105].get('mCount')))
                                     print("Headshots: " +
                                             str(medals[111].get('mCount')))
 
@@ -543,6 +573,80 @@ while(True):
                                     print("Headshots: " +
                                             str(total_headshots))
                                     print("\nWaiting for next game stats...")
+
+                            #Create CSV if required
+                            rows = []
+                            if csv == 1:
+                                hooper = root[7].get('HopperName').replace("$MP_", "")
+                                gametype = root[8].get('GameTypeName')
+
+                                for z in range(0, len(root[10])):
+                                    players = root[10][z].get('mGamertagText')
+                                    score = int(root[10][z].get('Score'))
+                                    kills = int(root[10][z].get('mKills'))
+                                    assists = int(root[10][z].get('mAssists'))
+                                    deaths = int(root[10][z].get('mDeaths'))
+                                    wepkill = int(root[10][z].get('mKillsWeapon'))
+                                    nades = int(root[10][z].get('mKillsGrenade'))
+                                    melees = int(root[10][z].get('mKillsMelee'))
+                                    other = int(root[10][z].get('mKillsOther'))
+                                    avglife = round(int(root[10][z].get('mSecondsAlive'))/ 60, 2)
+                                    if deaths > 0:
+                                        kd = round(kills/ deaths, 2)
+                                    else:
+                                        kd = 0
+                                    spree = int(root[10][z].get('mMostKillsInARow')) #broke in season 6
+                                    medalcount = int(root[10][z].get('mTotalMedalCount'))
+                                    if root[5].get('IsTeamsEnabled') == 'true':
+                                        team_id = int(root[10][z].get('mTeamId'))
+                                        if team_id == 0:
+                                            team = "Red Team"
+                                        else:
+                                            team = "Blue Team"
+                                    else:
+                                        "FFA"
+
+                                    rows.append({"Team": team,
+                                                "Players": players,
+                                                "Score": score,
+                                                "Kills": kills,
+                                                "Assists": assists,
+                                                "Deaths": deaths,
+                                                "Weapon Kills": wepkill,
+                                                "Grenade Kills": nades,
+                                                "Melee Kills": melees,
+                                                "Other Kills": other,
+                                                "Average Life Span": avglife,
+                                                "Kill Death Ratio": kd,
+                                                "Longest Spree": spree,
+                                                "Medals": medalcount
+                                                })
+
+                                df = pd.DataFrame(rows)
+                                #df.index += 1 #Start the index from 1 instead of zero
+                                #df.index.name = '#' # Add a header to the index column
+
+                                # Write dataframe to csv
+                                df.to_csv(csv_output + hooper + ' - ' + gametype + ' - ' + date_time_now +'.csv', index=False) #index=False removes the index column
+
+                                # Future carnage report pdf
+
+                                #mcc style
+
+                                # Hopper name eg hce hardcore doubles
+                                # Blue team won Gamertype - eg team slayer - game score
+
+                                # overview - page 1 of 3
+                                # weapon type stats
+                                # advance stats
+
+                                # halo ce style - postgame carnage report
+
+                                # Red Team 10
+                                # Blue Team 3
+
+                                # Place Name Score Kills Assits Deaths
+                                # 1st icon
 
                     except:
                         print("Error saving file - check gamertag is correct")
